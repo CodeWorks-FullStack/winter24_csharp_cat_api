@@ -6,7 +6,7 @@ namespace csharp_cat_api.Controllers;
 public class CatsController : ControllerBase
 {
 
-  [HttpGet]
+  [HttpGet("test")]
   public ActionResult<string> TestApi()
   {
     try
