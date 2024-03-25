@@ -1,10 +1,16 @@
 namespace csharp_cat_api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-// [Route("api/cats")]
+[Route("api/[controller]")] // [Route("api/cats")]
 public class CatsController : ControllerBase
 {
+
+  private readonly CatsService _catsService;
+
+  public CatsController(CatsService catsService)
+  {
+    _catsService = catsService;
+  }
 
   [HttpGet("test")]
   public ActionResult<string> TestApi()
@@ -16,6 +22,19 @@ public class CatsController : ControllerBase
     catch (Exception error)
     {
       return BadRequest(error.Message);
+    }
+  }
+
+  public ActionResult<List<Cat>> GetCats()
+  {
+    try
+    {
+      List<Cat> cats = _catsService.GetCats();
+      return Ok(cats); // NOTE response.send(cats)
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message); // NOTE next(error)
     }
   }
 }

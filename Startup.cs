@@ -33,6 +33,9 @@ public class Startup
 
     services.AddScoped<AccountsRepository>();
     services.AddScoped<AccountService>();
+
+    // Creates a CatsService and injects as a dependency when needed
+    services.AddScoped<CatsService>();
   }
 
   private void ConfigureCors(IServiceCollection services)
