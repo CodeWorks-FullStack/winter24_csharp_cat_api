@@ -36,6 +36,7 @@ public class Startup
 
     // Creates a CatsService and injects as a dependency when needed
     services.AddScoped<CatsService>();
+    // Creates a CatsRepository and injects as a dependency when needed
     services.AddScoped<CatsRepository>();
   }
 

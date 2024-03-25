@@ -1,3 +1,4 @@
+
 namespace csharp_cat_api.Services;
 public class CatsService
 {
@@ -13,5 +14,11 @@ public class CatsService
   {
     List<Cat> cats = _repository.GetCats();
     return cats;
+  }
+
+  public Cat CreateCat(Cat catData)
+  {
+    Cat cat = _repository.CreateCat(catData);
+    return cat;
   }
 }

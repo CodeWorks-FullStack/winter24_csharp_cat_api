@@ -1,4 +1,5 @@
 
+
 namespace csharp_cat_api.Repositories;
 
 
@@ -18,5 +19,28 @@ public class CatsRepository
     List<Cat> cats = _db.Query<Cat>(sql).ToList();
 
     return cats;
+  }
+
+  internal Cat CreateCat(Cat catData)
+  {
+    string badSqlThatWillGetYouInBigTrouble = @$"
+    INSERT INTO 
+    cats(numberOfLegs, hasTail, color, likesCheese, name)
+    VALUES({catData.NumberOfLegs}, {catData.HasTail}, '{catData.Color}', {catData.LikesCheese}, '{catData.Name}');
+    
+    SELECT * FROM cats WHERE id = LAST_INSERT_ID()
+    ";
+
+
+    string goodSql = @"
+    INSERT INTO 
+    cats(numberOfLegs, hasTail, color, likesCheese, name)
+    VALUES(@NumberOfLegs, @HasTail, @Color, @LikesCheese, @Name);
+    
+    SELECT * FROM cats WHERE id = LAST_INSERT_ID()
+    ";
+
+    Cat cat = _db.Query<Cat>(goodSql, catData).FirstOrDefault();
+    return cat;
   }
 }

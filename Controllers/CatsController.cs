@@ -38,4 +38,18 @@ public class CatsController : ControllerBase
       return BadRequest(error.Message); // NOTE next(error)
     }
   }
+
+  [HttpPost]
+  public ActionResult<Cat> CreateCat([FromBody] Cat catData)
+  {
+    try 
+    { 
+      Cat cat = _catsService.CreateCat(catData);
+      return Ok(cat);
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message);
+    }
+  }
 }
