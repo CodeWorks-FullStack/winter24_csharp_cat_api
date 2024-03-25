@@ -7,6 +7,7 @@ CREATE TABLE accounts(
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8mb4 COMMENT '';
 
+-- NOTE first step for setting up web API is to create tables to store data in
 CREATE TABLE cats(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   numberOfLegs INT NOT NULL DEFAULT 4,
@@ -16,6 +17,7 @@ CREATE TABLE cats(
   hasTail BOOLEAN DEFAULT true
 );
 
+-- NOTE everything below not necessary, but gives us data to play around with
 INSERT INTO cats(name, numberOfLegs, color, likesCheese, hasTail) VALUES("Gopher", 4, "black", true, true);
 
 INSERT INTO cats(name, numberOfLegs, color, likesCheese, hasTail)
