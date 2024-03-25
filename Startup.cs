@@ -36,6 +36,7 @@ public class Startup
 
     // Creates a CatsService and injects as a dependency when needed
     services.AddScoped<CatsService>();
+    services.AddScoped<CatsRepository>();
   }
 
   private void ConfigureCors(IServiceCollection services)
