@@ -4,7 +4,7 @@ public class CatsService
 {
 
   private readonly CatsRepository _repository;
-
+  // NOTE dependency injection 💉
   public CatsService(CatsRepository repository)
   {
     _repository = repository;

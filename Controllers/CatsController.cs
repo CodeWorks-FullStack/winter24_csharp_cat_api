@@ -1,18 +1,21 @@
 namespace csharp_cat_api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")] // [Route("api/cats")]
-public class CatsController : ControllerBase
+[Route("api/[controller]")] // NOTE node equivalent: `super('api/cats')`
+// [Route("api/cats")] this also works
+public class CatsController : ControllerBase //NOTE node equivalent: `class CatsController extends BaseController`
 {
 
   private readonly CatsService _catsService;
 
+  // NOTE dependency injection 💉
+  // Our Startup.cs is responsible for creating services and handing them out to other classes as needed. Services are passed through the constructor of the class that needs them
   public CatsController(CatsService catsService)
   {
     _catsService = catsService;
   }
 
-  [HttpGet("test")]
+  [HttpGet("test")] // GET request to https://localhost:7045/api/test will trigger this method
   public ActionResult<string> TestApi()
   {
     try
@@ -26,6 +29,7 @@ public class CatsController : ControllerBase
   }
 
   [HttpGet]
+  // NOTE ActionResult is an HTTP response type
   public ActionResult<List<Cat>> GetCats()
   {
     try
@@ -40,10 +44,10 @@ public class CatsController : ControllerBase
   }
 
   [HttpPost]
-  public ActionResult<Cat> CreateCat([FromBody] Cat catData)
+  public ActionResult<Cat> CreateCat([FromBody] Cat catData) // NOTE const catData = request.body
   {
-    try 
-    { 
+    try
+    {
       Cat cat = _catsService.CreateCat(catData);
       return Ok(cat);
     }
