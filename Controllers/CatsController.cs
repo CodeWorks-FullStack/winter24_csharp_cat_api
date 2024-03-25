@@ -25,6 +25,7 @@ public class CatsController : ControllerBase
     }
   }
 
+  [HttpGet]
   public ActionResult<List<Cat>> GetCats()
   {
     try
